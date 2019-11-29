@@ -2,8 +2,7 @@ package com.skilldistillery.jets;
 
 public interface CargoCarrier {
 	
-	void loadCargo();
-	
+	public void loadCargo();
 	
 
 }
