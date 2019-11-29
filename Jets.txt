@@ -1,3 +1,5 @@
-model, speed, range, price
 F-22 Raptor,1500.00,1600,150000000
 FA-18 Super Hornet,1227.63,1800,7050000
+Messerschmitt ME 262,541.00,652,473000
+SU-57,1616.00,3107,54000000
+F-15E Strike Eagle,1875.00,2400,31100000
