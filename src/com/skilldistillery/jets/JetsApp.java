@@ -15,11 +15,14 @@ public class JetsApp {
 	}
 	//Methods
 	public static void main(String[] args) {
+		JetsApp ja = new JetsApp();
+		
+		ja.Launch();
 		
 
 	}
 	private void Launch() {
-
+		//buffered reader / file reader for Jets.txt file somewhere in here?
 	}
 	private void displayUserMenu() {
 		System.out.println("Please select an option below");
