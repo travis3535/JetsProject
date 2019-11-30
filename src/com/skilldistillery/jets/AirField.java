@@ -10,6 +10,17 @@ public class AirField {
 	public AirField() {
 		jets = new ArrayList<>();
 	}
+
+
+	public List<Jet> getJets() {
+		return jets;
+	}
+
+
+	public void setJets(List<Jet> jets) {
+		this.jets = jets;
+	}
+	
 	
 
 

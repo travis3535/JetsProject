@@ -17,12 +17,45 @@ public abstract class Jet {
 	}
 	//Methods
 	public void fly() {
+		this.toString();
+		double flyTime = speed / range;
+		System.out.println("Flytime : " + flyTime);
 		
 	}
 	
 	public double getSpeedInMach() {
-		return speed;
+		double mach = this.speed / 767.269;
 		
+		return mach;
+		
+	}
+	@Override
+	public String toString() {
+		return "Jet [model=" + model + ", speed=" + speed + ", range=" + range + ", price=" + price + "]";
+	}
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public double getSpeed() {
+		return speed;
+	}
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+	public int getRange() {
+		return range;
+	}
+	public void setRange(int range) {
+		this.range = range;
+	}
+	public long getPrice() {
+		return price;
+	}
+	public void setPrice(long price) {
+		this.price = price;
 	}
 	
 }
