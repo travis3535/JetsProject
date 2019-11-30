@@ -35,25 +35,25 @@ public class JetsApp {
 			while ((line = bufIn.readLine()) != null) {
 				String[] lineSplit = line.split(",");
 				double speedSplit = Double.parseDouble(lineSplit[1]);
-				System.out.println("speed : " + speedSplit);
+//				System.out.println("speed : " + speedSplit);
 				int rangeSplit = Integer.parseInt(lineSplit[2]);
-				System.out.println("range : " + rangeSplit);
+//				System.out.println("range : " + rangeSplit);
 				long priceSplit = Long.parseLong(lineSplit[3]);
-				System.out.println("price : " + priceSplit);
+//				System.out.println("price : " + priceSplit);
 				String typeOfJet = lineSplit[4];
 				if (typeOfJet.equalsIgnoreCase("fighter")) {
 					Jet jet = new FighterJet(lineSplit[0], speedSplit, rangeSplit, priceSplit);
-					System.out.println("Jet  " + jet.toString());
+//					System.out.println("Jet  " + jet.toString());
 					jetsAf.addJet(jet);
 
 				}
 				if (typeOfJet.equalsIgnoreCase("cargo")) {
 					Jet jet = new CargoPlane(lineSplit[0], speedSplit, rangeSplit, priceSplit);
-					System.out.println("Cargo  " + jet.toString());
+//					System.out.println("Cargo  " + jet.toString());
 					jetsAf.addJet(jet);
 
 				}
-				System.out.println("*************************");
+//				System.out.println("*************************");
 
 			}
 
@@ -89,17 +89,13 @@ public class JetsApp {
 					userJetAdd();
 					break;
 				case 8:
-//					Remove a Jet from Fleet
+					userJetRemove();
 					break;
 				case 9:
-//					QUIT
-					break;
-				default:
+					System.out.println("Thanks for visiting Area 51");
 					break;
 			}
-		} while (input <= 9);
-
-		kb.close();
+		} while (input <= 8);
 
 	}
 
@@ -178,8 +174,25 @@ public class JetsApp {
 		}
 
 	}
-	
-	
+
+	public void userJetRemove() {
+//		listAllJets();
+//		System.out.println("Enter the Model of the jet you would like to remove");
+//		System.out.println("Please enter the full model including any special characters");
+		System.out.println("Enter number of jet to remove");
+		int userRemove;
+		Jet removedJet = null;
+		int count = 1;
+		for (Jet temp : jetsAf.getJets()) {
+			System.out.println(count + " " + temp.getModel());
+			count++;
+		}
+		userRemove = kb.nextInt();
+
+		removedJet = jetsAf.getJets().remove(userRemove - 1);
+		System.out.println("Removing " + removedJet);
+
+	}
 
 	private void displayUserMenu() {
 		System.out.println();
