@@ -40,11 +40,20 @@ public class JetsApp {
 				System.out.println("range : " + rangeSplit);
 				long priceSplit = Long.parseLong(lineSplit[3]);
 				System.out.println("price : " + priceSplit);
-				Jet jet = new FighterJet(lineSplit[0], speedSplit, rangeSplit, priceSplit);
-				System.out.println("Jet  " + jet.toString());
-				System.out.println("*************************");
+				String typeOfJet = lineSplit[4];
+				if (typeOfJet.equalsIgnoreCase("fighter")) {
+					Jet jet = new FighterJet(lineSplit[0], speedSplit, rangeSplit, priceSplit);
+					System.out.println("Jet  " + jet.toString());
+					jetsAf.addJet(jet);
 
-				jetsAf.addJet(jet);
+				}
+				if (typeOfJet.equalsIgnoreCase("cargo")) {
+					Jet jet = new CargoPlane(lineSplit[0], speedSplit, rangeSplit, priceSplit);
+					System.out.println("Cargo  " + jet.toString());
+					jetsAf.addJet(jet);
+
+				}
+				System.out.println("*************************");
 
 			}
 
@@ -65,19 +74,19 @@ public class JetsApp {
 					flyAllJets();
 					break;
 				case 3:
-//					View fastest Jet
+					listFastest();
 					break;
 				case 4:
-//					View longest ranged Jet
+					listLongest();
 					break;
 				case 5:
-//					Load all Cargo Jets
+					loadAllCargo();
 					break;
 				case 6:
 //					DOGFIGHT!
 					break;
 				case 7:
-//					Add a Jet to Fleet
+					userJetAdd();
 					break;
 				case 8:
 //					Remove a Jet from Fleet
@@ -112,8 +121,65 @@ public class JetsApp {
 	}
 
 	public void listFastest() {
-		
+		double speed = Double.MIN_VALUE;
+		Jet fastest = null;
+		for (Jet temp : jetsAf.getJets()) {
+			if (temp.getSpeed() > speed) {
+				speed = temp.getSpeed();
+				fastest = temp;
+			}
+		}
+		System.out.println(fastest.toString());
 	}
+
+	public void listLongest() {
+		int longest = Integer.MIN_VALUE;
+		Jet furthest = null;
+		for (Jet temp : jetsAf.getJets()) {
+			if (temp.getRange() > longest) {
+				longest = temp.getRange();
+				furthest = temp;
+			}
+		}
+		System.out.println(furthest.toString());
+
+	}
+
+	public void loadAllCargo() {
+		for (Jet temp : jetsAf.getJets()) {
+			if (temp instanceof CargoCarrier) {
+				((CargoCarrier) temp).loadCargo();
+			}
+		}
+
+	}
+
+	void userJetAdd() {
+		System.out.println("Please enter model:");
+		String userModel = kb.next();
+		System.out.println("Speed in MPH to nearest tenth : ");
+		double userSpeed = kb.nextDouble();
+		System.out.println("Range : ");
+		int userRange = kb.nextInt();
+		System.out.println("Price $: ");
+		long userPrice = kb.nextLong();
+		System.out.println("Type of jet, fighter or cargo : ");
+		String userType = kb.next();
+
+		if (userType.equalsIgnoreCase("fighter")) {
+			Jet jet = new FighterJet(userModel, userSpeed, userRange, userPrice);
+			System.out.println("Jet  " + jet.toString());
+			jetsAf.addJet(jet);
+		}
+		if (userType.equalsIgnoreCase("cargo")) {
+			Jet jet = new CargoPlane(userModel, userSpeed, userRange, userPrice);
+			System.out.println("Cargo  " + jet.toString());
+			jetsAf.addJet(jet);
+		}
+
+	}
+	
+	
 
 	private void displayUserMenu() {
 		System.out.println();
