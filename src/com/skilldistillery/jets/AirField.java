@@ -10,7 +10,9 @@ public class AirField {
 	public AirField() {
 		jets = new ArrayList<>();
 	}
-
+	public void addJet(Jet jet) {
+		jets.add(jet);
+	}
 
 	public List<Jet> getJets() {
 		return jets;

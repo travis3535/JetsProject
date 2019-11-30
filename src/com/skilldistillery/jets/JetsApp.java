@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class JetsApp {
 
 	// fields
-	private AirField airField;
+	AirField jetsAf = new AirField();
 	private Scanner kb;
 
 	// constructors
@@ -26,9 +26,8 @@ public class JetsApp {
 	}
 
 	private void Launch() {
-		//buffered reader / file reader for Jets.txt file somewhere in here?
-		AirField jetsAf = new AirField();
-		
+		kb = new Scanner(System.in);
+
 		BufferedReader bufIn = null;
 		try {
 			bufIn = new BufferedReader(new FileReader("Jets.txt"));
@@ -41,19 +40,83 @@ public class JetsApp {
 				System.out.println("range : " + rangeSplit);
 				long priceSplit = Long.parseLong(lineSplit[3]);
 				System.out.println("price : " + priceSplit);
+				Jet jet = new FighterJet(lineSplit[0], speedSplit, rangeSplit, priceSplit);
+				System.out.println("Jet  " + jet.toString());
 				System.out.println("*************************");
+
+				jetsAf.addJet(jet);
+
 			}
-			
+
+		} catch (IOException e) {
+			System.err.println(e);
+		}
+
+		int input;
+		do {
+			displayUserMenu();
+			input = kb.nextInt();
+
+			switch (input) {
+				case 1:
+					listAllJets();
+					break;
+				case 2:
+					flyAllJets();
+					break;
+				case 3:
+//					View fastest Jet
+					break;
+				case 4:
+//					View longest ranged Jet
+					break;
+				case 5:
+//					Load all Cargo Jets
+					break;
+				case 6:
+//					DOGFIGHT!
+					break;
+				case 7:
+//					Add a Jet to Fleet
+					break;
+				case 8:
+//					Remove a Jet from Fleet
+					break;
+				case 9:
+//					QUIT
+					break;
+				default:
+					break;
 			}
-			catch (IOException e) {
-				System.err.println(e);
+		} while (input <= 9);
+
+		kb.close();
+
+	}
+
+	public void listAllJets() {
+		for (Jet temp : jetsAf.getJets()) {
+			if (temp != null) {
+				System.out.println(temp);
 			}
-			finally {
-				
+		}
+
+	}
+
+	public void flyAllJets() {
+		for (Jet temp : jetsAf.getJets()) {
+			if (temp != null) {
+				temp.fly();
 			}
+		}
+	}
+
+	public void listFastest() {
+		
 	}
 
 	private void displayUserMenu() {
+		System.out.println();
 		System.out.println("Please select an option below");
 		System.out.println("Option 1 : List Jet Fleet");
 		System.out.println("Option 2 : Fly all Jets");

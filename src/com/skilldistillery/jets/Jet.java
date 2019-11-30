@@ -18,8 +18,8 @@ public abstract class Jet {
 	//Methods
 	public void fly() {
 		this.toString();
-		double flyTime = speed / range;
-		System.out.println("Flytime : " + flyTime);
+		double flyTime = range / speed;
+		System.out.println("Flytime in hours : " + this.model + " " + flyTime);
 		
 	}
 	
