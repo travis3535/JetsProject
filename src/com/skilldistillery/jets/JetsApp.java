@@ -73,7 +73,8 @@ public class JetsApp {
 					loadAllCargo();
 					break;
 				case 6:
-//					DOGFIGHT!
+					System.out.println("Dogfighting is currently unavailable at your level of training.");
+					System.out.println("Please check back later");
 					break;
 				case 7:
 					userJetAdd();
@@ -183,6 +184,7 @@ public class JetsApp {
 	private void displayUserMenu() {
 		System.out.println();
 		System.out.println("Please select an option below");
+		System.out.println();
 		System.out.println("Option 1 : List Jet Fleet");
 		System.out.println("Option 2 : Fly all Jets");
 		System.out.println("Option 3 : View fastest Jet");
